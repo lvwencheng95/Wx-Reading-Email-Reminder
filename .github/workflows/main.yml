@@ -2,7 +2,7 @@ name: Wx-Reading-Reminder
 
 on:
   schedule:
-    - cron: '45 13 * * *'  # UTC格式，我们需要的北京时间每天21:30运行
+    - cron: '25 13 * * *'  # UTC格式，我们需要的北京时间每天21:30运行
   workflow_dispatch:  # 允许手动触发
 
 jobs:
