@@ -1,10 +1,5 @@
-# -*- coding: utf-8 -*-
-# @Time : 2025/11/10
-# @Author : 52595
-# @File : wxReadingReminder.py
-# @Python Version : 3.7.4
-# @Software: PyCharm
-
+import requests
+import urllib3
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -12,6 +7,8 @@ import os
 from dotenv import load_dotenv
 from email.header import Header
 
+# 禁用SSL警告
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # 加载环境变量
 load_dotenv()
@@ -24,6 +21,11 @@ EMAIL_CONFIG = {
     # pifdgnckwiwddcff
     'sender_password': os.getenv('SENDER_PASSWORD'),
     'receiver_email': os.getenv('RECEIVER_EMAIL')
+}
+
+# 信息配置
+INFO_CONFIG = {
+    'token': os.getenv('TOKEN')
 }
 
 
@@ -52,18 +54,46 @@ def send_email(subject, content):
     except Exception as e:
         print(f"邮件发送失败: {str(e)}")
 
+def sign_in():
+    url = "https://mallapi.guomai.cc/user/sign_in"
 
-def main():
-    # 邮件内容
-    html_content = f"""
-    <h2>记得在微信读书读会书，别中途断了</h2>
-    """
+    headers = {
+        "Host": "mallapi.guomai.cc",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 MicroMessenger/7.0.20.1781(0x6700143B) NetType/WIFI MiniProgramEnv/Windows WindowsWechat/WMPF WindowsWechat(0x63090a13) UnifiedPCWindowsWechat(0xf2541510) XWEB/17071",
+        "xweb_xhr": "1",
+        "channel": "1",
+        "content-type": "application/json",
+        "versions": "v5",
+        # "token": "1633870c-1146-4dcc-887f-305dabb196f1",
+        "token": INFO_CONFIG['TOKEN'],
+        "accept": "*/*",
+        "sec-fetch-site": "cross-site",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-dest": "empty",
+        "referer": "https://servicewechat.com/wx1c34390acfc8422d/96/page-frame.html",
+        "accept-language": "zh-CN,zh;q=0.9",
+        "priority": "u=1, i"
+    }
 
-    # 发送邮件
-    # 设置邮件标题
-    subject = f"微信读书365日挑战"
-    send_email(subject, html_content)
+    try:
+        # 添加 verify=False 跳过SSL验证
+        response = requests.get(url, headers=headers, verify=False)
+
+        print(f"状态码: {response.status_code}")
+        print("响应内容:")
+        print(response.text)
+        # 邮件内容
+        html_content = response.text
+        # 发送邮件
+        # 设置邮件标题
+        subject = f"果麦签到&微信读书挑战提醒"
+        send_email(subject, html_content)
+        return response
+
+    except requests.exceptions.RequestException as e:
+        print(f"请求失败: {e}")
+        return None
 
 
 if __name__ == "__main__":
-    main()
+    result = sign_in()
