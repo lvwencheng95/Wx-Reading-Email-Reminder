@@ -64,7 +64,7 @@ def sign_in():
         "channel": "1",
         "content-type": "application/json",
         "versions": "v5",
-        "token": INFO_CONFIG['TOKEN'],
+        "token": INFO_CONFIG['token'],
         "accept": "*/*",
         "sec-fetch-site": "cross-site",
         "sec-fetch-mode": "cors",
