@@ -64,7 +64,6 @@ def sign_in():
         "channel": "1",
         "content-type": "application/json",
         "versions": "v5",
-        # "token": "1633870c-1146-4dcc-887f-305dabb196f1",
         "token": INFO_CONFIG['TOKEN'],
         "accept": "*/*",
         "sec-fetch-site": "cross-site",
