@@ -17,25 +17,18 @@ load_dotenv()
 EMAIL_CONFIG = {
     'smtp_server': os.getenv('SMTP_SERVER', 'smtp.qq.com'),
     'smtp_port': int(os.getenv('SMTP_PORT', 587)),
-    'guomai_token': os.getenv('GUOMAI_TOKEN'),
     'sender_email': os.getenv('SENDER_EMAIL'),
     # pifdgnckwiwddcff
     'sender_password': os.getenv('SENDER_PASSWORD'),
-    'receiver_email': os.getenv('RECEIVER_EMAIL'),
-    'guomai_tok': os.getenv('GUOMAI_TOK')
+    'receiver_email': os.getenv('RECEIVER_EMAIL')
 }
 
 # 信息配置
 INFO_CONFIG = {
-    'token': os.getenv('TOKEN')
+    'guomai_token': os.getenv('GUOMAI_TOKEN')
 }
 
-print(f"从环境变量加载的TOKEN: {os.getenv('TOKEN')}")
 print(f"从环境变量加载的GUOMAI_TOKEN: {os.getenv('GUOMAI_TOKEN')}")
-print(f"从环境变量加载的GUOMAI_TOK: {os.getenv('GUOMAI_TOK')}")
-print(f"从环境变量加载的SENDER_EMAIL: {os.getenv('SENDER_EMAIL')}")
-print(f"从环境变量加载的RECEIVER_EMAIL: {os.getenv('RECEIVER_EMAIL')}")
-print(f".env文件存在: {os.path.exists('.env')}")
 
 def send_email(subject, content):
     """发送邮件通知"""
@@ -73,7 +66,7 @@ def sign_in():
         "channel": "1",
         "content-type": "application/json",
         "versions": "v5",
-        "token": INFO_CONFIG['token'],
+        "token": INFO_CONFIG['guomai_token'],
         "accept": "*/*",
         "sec-fetch-site": "cross-site",
         "sec-fetch-mode": "cors",
