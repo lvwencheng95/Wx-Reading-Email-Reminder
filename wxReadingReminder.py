@@ -26,7 +26,7 @@ EMAIL_CONFIG = {
 
 # 信息配置
 INFO_CONFIG = {
-    'token': 'test'
+    'token': os.getenv('TOKEN')
 }
 
 print(f"从环境变量加载的TOKEN: {os.getenv('TOKEN')}")
