@@ -43,7 +43,7 @@ def send_email(subject, content):
     msg['Subject'] = subject
 
     msg.attach(MIMEText(content, 'html'))
-    print(f"token: {INFO_CONFIG['token']}")
+    print(f"token: {INFO_CONFIG['guomai_token']}")
     
     try:
         server = smtplib.SMTP(EMAIL_CONFIG['smtp_server'], EMAIL_CONFIG['smtp_port'])
