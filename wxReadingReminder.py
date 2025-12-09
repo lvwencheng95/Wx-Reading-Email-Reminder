@@ -13,6 +13,9 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 # 加载环境变量
 load_dotenv()
 
+print(f"从环境变量加载的TOKEN: {os.getenv('TOKEN')}")
+print(f".env文件存在: {os.path.exists('.env')}")
+
 # 邮件配置
 EMAIL_CONFIG = {
     'smtp_server': os.getenv('SMTP_SERVER', 'smtp.qq.com'),
