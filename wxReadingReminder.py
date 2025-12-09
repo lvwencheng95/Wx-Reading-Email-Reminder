@@ -21,7 +21,8 @@ EMAIL_CONFIG = {
     # pifdgnckwiwddcff
     'sender_password': os.getenv('SENDER_PASSWORD'),
     'receiver_email': os.getenv('RECEIVER_EMAIL'),
-    'guomai_token': os.getenv('GUOMAI_TOKEN')
+    'guomai_token': os.getenv('GUOMAI_TOKEN'),
+    'guomai_tok': os.getenv('GUOMAI_TOK')
 }
 
 # 信息配置
