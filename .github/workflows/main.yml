@@ -29,4 +29,5 @@ jobs:
         SENDER_EMAIL: ${{ secrets.SENDER_EMAIL }}
         SENDER_PASSWORD: ${{ secrets.SENDER_PASSWORD }}
         RECEIVER_EMAIL: ${{ secrets.RECEIVER_EMAIL }}
+        GUOMAI_TOKEN: ${{ secrets.GUOMAI_TOKEN }}
       run: python wxReadingReminder.py
