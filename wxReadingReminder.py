@@ -31,6 +31,7 @@ INFO_CONFIG = {
 
 print(f"从环境变量加载的TOKEN: {os.getenv('TOKEN')}")
 print(f"从环境变量加载的GUOMAI_TOKEN: {os.getenv('GUOMAI_TOKEN')}")
+print(f"从环境变量加载的SENDER_EMAIL: {os.getenv('SENDER_EMAIL')}")
 print(f".env文件存在: {os.path.exists('.env')}")
 
 def send_email(subject, content):
