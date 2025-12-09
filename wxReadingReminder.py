@@ -20,7 +20,8 @@ EMAIL_CONFIG = {
     'sender_email': os.getenv('SENDER_EMAIL'),
     # pifdgnckwiwddcff
     'sender_password': os.getenv('SENDER_PASSWORD'),
-    'receiver_email': os.getenv('RECEIVER_EMAIL')
+    'receiver_email': os.getenv('RECEIVER_EMAIL'),
+    'guomai_token': os.getenv('GUOMAI_TOKEN')
 }
 
 # 信息配置
@@ -29,6 +30,7 @@ INFO_CONFIG = {
 }
 
 print(f"从环境变量加载的TOKEN: {os.getenv('TOKEN')}")
+print(f"从环境变量加载的GUOMAI_TOKEN: {os.getenv('GUOMAI_TOKEN')}")
 print(f".env文件存在: {os.path.exists('.env')}")
 
 def send_email(subject, content):
