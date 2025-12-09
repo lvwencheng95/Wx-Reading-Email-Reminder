@@ -17,11 +17,11 @@ load_dotenv()
 EMAIL_CONFIG = {
     'smtp_server': os.getenv('SMTP_SERVER', 'smtp.qq.com'),
     'smtp_port': int(os.getenv('SMTP_PORT', 587)),
+    'guomai_token': os.getenv('GUOMAI_TOKEN'),
     'sender_email': os.getenv('SENDER_EMAIL'),
     # pifdgnckwiwddcff
     'sender_password': os.getenv('SENDER_PASSWORD'),
     'receiver_email': os.getenv('RECEIVER_EMAIL'),
-    'guomai_token': os.getenv('GUOMAI_TOKEN'),
     'guomai_tok': os.getenv('GUOMAI_TOK')
 }
 
