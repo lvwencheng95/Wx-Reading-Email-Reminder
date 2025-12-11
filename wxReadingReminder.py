@@ -83,8 +83,26 @@ def sign_in():
         print(f"状态码: {response.status_code}")
         print("响应内容:")
         print(response.text)
+        data = response.json()   # 这里已经是 dict，且 msg 已经是中文
+
+        code = data.get("code")
+        msg = data.get("msg", "")
+
+        return_msg = ""
+        if code == 500:
+            # print(f"签到失败，{msg}")
+            return_msg = f"果麦签到:签到失败，" + msg
+        elif code == 200:
+            # print(msg)
+            return_msg = f"果麦签到:" + msg
+        else:
+            # print(f"未知返回：code={code}，msg={msg}")
+            return_msg = f"果麦签到:未知返回,code=" + code + "，msg=" + msg
+        # print(return_msg)
+        # return return_msg
         # 邮件内容
-        html_content = response.text
+        # html_content = response.text
+        html_content = return_msg
         # 发送邮件
         # 设置邮件标题
         subject = f"果麦签到&微信读书挑战提醒"
